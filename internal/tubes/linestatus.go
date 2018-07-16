@@ -74,13 +74,13 @@ func getLineColor(id string) *color.Color {
 
 func getStatusColor(status string) *color.Color {
   switch status {
-  case "Severe Delays":
+  case "Severe Delays", "Part Suspended":
     return color.New(color.FgRed)
   case "Minor Delays":
     return color.New(color.FgYellow)
   // "Good Service" is included as default
   default:
-    return color.New(color.FgHiBlack)
+    return color.New(color.FgGreen)
   }
 }
 
