@@ -7,7 +7,7 @@ Check the status of the Tube from the privacy and comfort of your very own shell
 This is just your standard `go build` right now.
 
         $ ./bootstrap.sh
-        $ cd cmd/internal/
+        $ cd cmd/tubes/
         $ go build
         $ ./tubes
 
