@@ -4,19 +4,19 @@ import (
   "net/http"
   "io/ioutil"
   "encoding/json"
+
+  "gardym.io/tubes/internal/tfl"
 )
 
-const statusApiEndpoint = "https://api.tfl.gov.uk/line/mode/tube/status"
-
 type LineStatus struct {
-  id string
-  name string
-  status string
-  reason string
+  Id string
+  Name string
+  Status string
+  Reason string
 }
 
 func getDataHttp() []byte {
-  resp, err := http.Get(statusApiEndpoint)
+  resp, err := http.Get(tfl.StatusApiEndpoint)
 
   if err != nil {
     panic(err)
@@ -43,41 +43,29 @@ func getDataFile() []byte {
   return data
 }
 
-func GetTubeStatus() []LineStatus {
+func GetTubeStatus() (lineStatuses []LineStatus) {
 
   body := getDataHttp()
   //body := getDataFile()
 
-  var dat []interface{}
+  var tflLines []tfl.Line
 
-  err := json.Unmarshal(body, &dat)
+  err := json.Unmarshal(body, &tflLines)
 
   if err != nil {
     panic(err)
   }
 
-  var statuses []LineStatus
-
-  for _, v := range dat {
-    o := v.(map[string]interface{})
-
-    for _, s := range o["lineStatuses"].([]interface{}) {
-      st := s.(map[string]interface{})
-
-      l := LineStatus {
-        id: o["id"].(string),
-        name: o["name"].(string),
-        status: st["statusSeverityDescription"].(string),
-      }
-
-      reason, ok := st["reason"]
-      if ok {
-        l.reason = reason.(string)
-      }
-
-      statuses = append(statuses, l)
+  for _, l := range tflLines {
+    for _, ls := range l.LineStatuses {
+      lineStatuses = append(lineStatuses, LineStatus {
+        Id: l.Id,
+        Name: l.Name,
+        Status: ls.Status,
+        Reason: ls.Reason,
+      })
     }
   }
 
-  return statuses
+  return
 }

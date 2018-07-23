@@ -42,17 +42,17 @@ func getStatusColor(status string) *color.Color {
 }
 
 func printTubeLine(line LineStatus) {
-  lineColor := getLineColor(line.id).Add(color.Bold).SprintFunc()
-  statusColor := getStatusColor(line.status).SprintFunc()
+  lineColor := getLineColor(line.Id).Add(color.Bold).SprintFunc()
+  statusColor := getStatusColor(line.Status).SprintFunc()
 
-  if line.reason != "" {
+  if line.Reason != "" {
     fmt.Printf("\n")
   }
 
-  fmt.Printf("%v: %v\n", lineColor(line.name), statusColor(line.status))
+  fmt.Printf("%v: %v\n", lineColor(line.Name), statusColor(line.Status))
 
-  if line.reason != "" {
-    fmt.Printf("%v\n\n", line.reason)
+  if line.Reason != "" {
+    fmt.Printf("%v\n\n", line.Reason)
   }
 }
 
