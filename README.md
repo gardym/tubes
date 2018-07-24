@@ -6,9 +6,11 @@ Check the status of the Tube from the privacy and comfort of your very own shell
 ![tubes example output](https://raw.githubusercontent.com/gardym/tubes/master/tubes-eg.png)
 
 
-## Building
+## Install it
 
-This is just your standard `go build` right now.
+        $ go get github.com/gardym/tubes/cmd/tubes
+
+## Build it
 
         $ ./bootstrap.sh
         $ cd cmd/tubes/
