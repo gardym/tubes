@@ -48,7 +48,7 @@ func getStatusColor(status string) RGBColor {
     return RGBColor{255, 255, 40}
   // "Good Service" is included as default
   default:
-    return RGBColor{0, 125, 50}
+    return RGBColor{0, 165, 50}
   }
 }
 
