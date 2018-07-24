@@ -2,6 +2,7 @@ package tubes
 
 import (
   "fmt"
+  "strings"
 
   "github.com/aybabtme/rgbterm"
 )
@@ -67,6 +68,10 @@ func darken(c RGBColor) RGBColor {
   return RGBColor{c.R / p, c.G / p, c.B / p}
 }
 
+func padRight(s string, n int) string {
+  return fmt.Sprintf("%v%v", s, strings.Repeat(" ", n - len([]rune(s))))
+}
+
 func printTubeLine(line LineStatus) {
   lineColor := getLineColor(line.Id)
   statusColor := getStatusColor(line.Status)
@@ -75,8 +80,10 @@ func printTubeLine(line LineStatus) {
     fmt.Printf("\n")
   }
 
+  paddedName := fmt.Sprintf(" %v", padRight(line.Name, 19))
+
   d := darken(lineColor)
-  lineName := rgbterm.FgString(line.Name, d.R, d.G, d.B)
+  lineName := rgbterm.FgString(paddedName, d.R, d.G, d.B)
 
   lineString := rgbterm.BgString(boldString(lineName), lineColor.R, lineColor.G, lineColor.B)
   statusString := rgbterm.FgString(line.Status, statusColor.R, statusColor.G, statusColor.B)
