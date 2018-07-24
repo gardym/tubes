@@ -40,15 +40,17 @@ func getLineColor(id string) RGBColor {
   return RGBColor{0, 0, 0}
 }
 
+// https://api.tfl.gov.uk/Line/Meta/Severity
 func getStatusColor(status string) RGBColor {
   switch status {
-  case "Severe Delays", "Part Suspended":
-    return RGBColor{255, 0, 0}
-  case "Minor Delays":
-    return RGBColor{255, 255, 40}
-  // "Good Service" is included as default
-  default:
+  case "Good Service":
     return RGBColor{0, 165, 50}
+  case "Severe Delays", "Closed", "Suspended",
+    "Planned Closure", "Part Closure", "Part Closed",
+    "Not Running", "Service Closed":
+    return RGBColor{255, 0, 0}
+  default:
+    return RGBColor{255, 255, 40}
   }
 }
 
