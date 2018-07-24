@@ -88,7 +88,7 @@ func printTubeLine(line LineStatus) {
   lineString := rgbterm.BgString(boldString(lineName), lineColor.R, lineColor.G, lineColor.B)
   statusString := rgbterm.FgString(line.Status, statusColor.R, statusColor.G, statusColor.B)
 
-  fmt.Printf("%v: %v\n", lineString, statusString)
+  fmt.Printf("%v %v\n", lineString, statusString)
 
   if line.Reason != "" {
     fmt.Printf("%v\n\n", line.Reason)
