@@ -1,6 +1,6 @@
 package tfl
 
-const StatusApiEndpoint = "https://api.tfl.gov.uk/line/mode/tube/status"
+const StatusApiEndpoint = "https://api.tfl.gov.uk/line/mode/tube,overground,dlr/status"
 
 type Line struct {
   Id string `json:"id"`

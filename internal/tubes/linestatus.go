@@ -25,7 +25,7 @@ var lineColors = map[string]RGBColor {
   "jubilee": RGBColor{161, 165, 167},
   "northern": RGBColor{0, 0, 0},
   "bakerloo": RGBColor{178, 99, 0},
-  "overground": RGBColor{239, 123, 16},
+  "london-overground": RGBColor{239, 123, 16},
   "elizabeth": RGBColor{147, 100, 204},
   "dlr": RGBColor{0, 175, 173},
 }
