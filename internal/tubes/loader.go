@@ -5,7 +5,7 @@ import (
   "io/ioutil"
   "encoding/json"
 
-  "gardym.io/tubes/internal/tfl"
+  "github.com/gardym/tubes/internal/tfl"
 )
 
 type LineStatus struct {

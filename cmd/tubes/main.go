@@ -1,7 +1,7 @@
 package main
 
 import (
-  "gardym.io/tubes/internal/tubes"
+  "github.com/gardym/tubes/internal/tubes"
 )
 
 func main() {
