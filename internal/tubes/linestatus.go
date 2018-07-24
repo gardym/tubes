@@ -55,6 +55,16 @@ func getStatusColor(status string) RGBColor {
 func boldString(s string) string {
   return fmt.Sprintf("\033[1m%v\033[0m", s)
 }
+
+func darken(c RGBColor) RGBColor {
+  if c.R == 0 && c.G == 0 && c.B == 0 {
+    return RGBColor{255, 255, 255}
+  }
+
+  var p uint8 = 3
+  return RGBColor{c.R / p, c.G / p, c.B / p}
+}
+
 func printTubeLine(line LineStatus) {
   lineColor := getLineColor(line.Id)
   statusColor := getStatusColor(line.Status)
@@ -63,7 +73,10 @@ func printTubeLine(line LineStatus) {
     fmt.Printf("\n")
   }
 
-  lineString := rgbterm.BgString(boldString(line.Name), lineColor.R, lineColor.G, lineColor.B)
+  d := darken(lineColor)
+  lineName := rgbterm.FgString(line.Name, d.R, d.G, d.B)
+
+  lineString := rgbterm.BgString(boldString(lineName), lineColor.R, lineColor.G, lineColor.B)
   statusString := rgbterm.FgString(line.Status, statusColor.R, statusColor.G, statusColor.B)
 
   fmt.Printf("%v: %v\n", lineString, statusString)
